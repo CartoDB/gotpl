@@ -17,7 +17,7 @@ And some improvements by myself :)
 
 ## Install
 
-You can download gotpl binaries for windows, linux and mac from here: https://github.com/belitre/gotpl/releases
+You can download gotpl binaries for windows, linux and mac from here: https://github.com/belitre/CartoDB/releases
 
 ## Usage
 

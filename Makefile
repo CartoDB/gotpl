@@ -18,7 +18,7 @@ tidy:
 
 .PHONY: build
 build: tidy
-	GOBIN=$(BINDIR) $(GO) install -ldflags '$(LDFLAGS)' github.com/belitre/gotpl/...
+	GOBIN=$(BINDIR) $(GO) install -ldflags '$(LDFLAGS)' github.com/CartoDB/gotpl/...
 
 # usage: make clean build-cross dist VERSION=v0.2-alpha
 .PHONY: build-cross
