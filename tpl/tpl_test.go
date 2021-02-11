@@ -141,7 +141,27 @@ func TestTemplate(t *testing.T) {
 			Strict: false,
 			Error:  false,
 		},
+		{
+			Input: []string{},
+			Templates: []string{
+				"{{ .TPL_MY_ENV_VAR }}",
+			},
+			Output: "oh baby",
+			Strict: false,
+			Error:  false,
+		},
+		{
+			Input: []string{},
+			Templates: []string{
+				"{{ .TPL_NOT_EXISTENT }}",
+			},
+			Output: "",
+			Strict: false,
+			Error:  false,
+		},
 	}
+
+	os.Setenv("TPL_MY_ENV_VAR", "oh baby")
 
 	for _, test := range tests {
 		fileNames := []string{}

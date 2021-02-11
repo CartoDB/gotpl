@@ -208,7 +208,11 @@ func getListFiles(tplFileNames []string) ([]*SrcDest, error) {
 // vals merges values from files specified via -f/--values and
 // directly via --set, marshaling them to YAML
 func vals(valueFiles []string, values []string) (map[string]interface{}, error) {
-	base := map[string]interface{}{}
+
+	base, err := loadEnvironment()
+	if err != nil {
+		return map[string]interface{}{}, err
+	}
 
 	// User specified a values files via -f/--values
 	for _, filePath := range valueFiles {
@@ -268,4 +272,17 @@ func mergeValues(dest map[string]interface{}, src map[string]interface{}) map[st
 		dest[k] = mergeValues(destMap, nextMap)
 	}
 	return dest
+}
+
+// loadEnvironment loads all the environment variables into a map to be used as values
+func loadEnvironment() (map[string]interface{}, error) {
+	envMap := make(map[string]interface{})
+	var err error
+
+	for _, v := range os.Environ() {
+		split_v := strings.Split(v, "=")
+		envMap[split_v[0]] = split_v[1]
+	}
+
+	return envMap, err
 }
